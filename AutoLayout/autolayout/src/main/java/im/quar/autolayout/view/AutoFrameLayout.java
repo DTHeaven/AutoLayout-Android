@@ -24,7 +24,9 @@ import android.widget.FrameLayout;
 import im.quar.autolayout.AutoLayoutInfo;
 import im.quar.autolayout.utils.AutoLayoutHelper;
 
-
+/**
+ * Created by DTHeaven on 15/12/9.
+ */
 public class AutoFrameLayout extends FrameLayout {
     private final AutoLayoutHelper mHelper = new AutoLayoutHelper(this);
 

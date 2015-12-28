@@ -7,7 +7,7 @@ import im.quar.autolayout.config.AutoLayoutConfig;
 
 
 /**
- * Created by zhy on 15/12/4.
+ * Created by DTHeaven on 15/12/4.
  */
 public class AutoUtils {
 

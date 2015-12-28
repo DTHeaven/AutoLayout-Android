@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * Created by liu.hanhong on 15/12/27.
+ * Created by DTHeaven on 15/12/27.
  */
 public class MaxWidth extends AutoAttr<View> {
     public MaxWidth(int pxVal) {

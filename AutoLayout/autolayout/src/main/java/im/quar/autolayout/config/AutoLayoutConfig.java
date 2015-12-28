@@ -8,7 +8,7 @@ import im.quar.autolayout.ScaleAdapter;
 import im.quar.autolayout.utils.ScreenUtils;
 
 /**
- * Created by zhy on 15/11/18.
+ * Created by DTHeaven on 15/11/18.
  */
 public class AutoLayoutConfig {
 

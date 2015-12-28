@@ -13,7 +13,7 @@ import im.quar.autolayout.view.AutoRelativeLayout;
 import im.quar.autolayout.ViewCreator;
 
 /**
- * Created by liu.hanhong on 15/12/14.
+ * Created by DTHeaven on 15/12/14.
  */
 class DefaultViewCreator implements ViewCreator {
     @Override

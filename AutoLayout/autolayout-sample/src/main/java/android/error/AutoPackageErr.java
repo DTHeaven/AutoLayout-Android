@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.ViewGroup;
 
 /**
- * Created by liu.hanhong on 15/12/25.
+ * Created by DTHeaven on 15/12/25.
  */
 //@AutoLayout
 public class AutoPackageErr extends ViewGroup {

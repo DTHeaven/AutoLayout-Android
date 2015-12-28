@@ -1,7 +1,7 @@
 package im.quar.autolayout.attr;
 
 /**
- * Created by zhy on 15/12/5.
+ * Created by DTHeaven on 15/12/5.
  * <p/>
  * 与attrs.xml中数值对应
  */

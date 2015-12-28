@@ -10,7 +10,7 @@ import im.quar.autolayout.utils.AutoLayoutHelper;
 
 
 /**
- * Created by zhy on 15/6/30.
+ * Created by DTHeaven on 15/6/30.
  */
 public class AutoLinearLayout extends LinearLayout {
 

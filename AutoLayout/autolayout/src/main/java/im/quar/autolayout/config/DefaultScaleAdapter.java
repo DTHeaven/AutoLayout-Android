@@ -6,7 +6,7 @@ import im.quar.autolayout.ScaleAdapter;
 import im.quar.autolayout.utils.ScreenUtils;
 
 /**
- * Created by liu.hanhong on 15/12/16.
+ * Created by DTHeaven on 15/12/16.
  */
 public class DefaultScaleAdapter implements ScaleAdapter {
 

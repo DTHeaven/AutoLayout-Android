@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import im.quar.autolayout.AutoLayoutSimple;
 
 /**
- * Created by liu.hanhong on 15/12/14.
+ * Created by DTHeaven on 15/12/14.
  */
 @AutoLayoutSimple
 public class AutoLinearLayout extends LinearLayout {

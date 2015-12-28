@@ -24,6 +24,9 @@ import android.widget.RelativeLayout;
 import im.quar.autolayout.AutoLayoutInfo;
 import im.quar.autolayout.utils.AutoLayoutHelper;
 
+/**
+ * Created by DTHeaven on 15/12/9.
+ */
 public class AutoRelativeLayout extends RelativeLayout {
     private final AutoLayoutHelper mHelper = new AutoLayoutHelper(this);
 

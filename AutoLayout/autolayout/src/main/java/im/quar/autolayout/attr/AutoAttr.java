@@ -4,7 +4,7 @@ package im.quar.autolayout.attr;
 import im.quar.autolayout.utils.AutoUtils;
 
 /**
- * Created by zhy on 15/12/4.
+ * Created by DTHeaven on 15/12/4.
  */
 public abstract class AutoAttr<T> {
     private int pxVal;

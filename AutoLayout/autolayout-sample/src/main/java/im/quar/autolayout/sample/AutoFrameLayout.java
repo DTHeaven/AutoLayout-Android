@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import im.quar.autolayout.AutoLayout;
 
 /**
- * Created by liu.hanhong on 15/12/14.
+ * Created by DTHeaven on 15/12/14.
  */
 @AutoLayout
 public class AutoFrameLayout extends FrameLayout{

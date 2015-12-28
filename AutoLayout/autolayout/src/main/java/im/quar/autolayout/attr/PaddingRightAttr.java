@@ -3,7 +3,7 @@ package im.quar.autolayout.attr;
 import android.view.View;
 
 /**
- * Created by zhy on 15/12/5.
+ * Created by DTHeaven on 15/12/5.
  */
 public class PaddingRightAttr extends AutoAttr<View> {
     public PaddingRightAttr(int pxVal) {

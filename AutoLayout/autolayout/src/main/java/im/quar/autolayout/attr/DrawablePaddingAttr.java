@@ -3,7 +3,7 @@ package im.quar.autolayout.attr;
 import android.widget.TextView;
 
 /**
- * Created by liu.hanhong on 15/12/24.
+ * Created by DTHeaven on 15/12/24.
  */
 public class DrawablePaddingAttr extends AutoAttr<TextView> {
 

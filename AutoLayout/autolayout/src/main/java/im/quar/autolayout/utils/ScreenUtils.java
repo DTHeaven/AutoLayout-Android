@@ -8,7 +8,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 /**
- * Created by liu.hanhong on 15/12/16.
+ * Created by DTHeaven on 15/12/16.
  */
 public class ScreenUtils {
     public static int[] getRealScreenSize(Context context) {

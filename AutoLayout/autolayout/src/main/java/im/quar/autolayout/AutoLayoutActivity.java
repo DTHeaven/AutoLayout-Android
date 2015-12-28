@@ -9,7 +9,7 @@ import im.quar.autolayout.utils.AutoLayoutHelper;
 
 
 /**
- * Created by liu.hanhong on 15/11/19.
+ * Created by DTHeaven on 15/11/19.
  */
 public class AutoLayoutActivity extends AppCompatActivity {
 

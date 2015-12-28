@@ -45,6 +45,9 @@ import im.quar.autolayout.attr.TextSizeAttr;
 import im.quar.autolayout.attr.WidthAttr;
 import im.quar.autolayout.config.AutoLayoutConfig;
 
+/**
+ * Created by DTHeaven on 15/12/9.
+ */
 public class AutoLayoutHelper {
     private static final ViewCreator mDefaultViewCreator;
     private static ViewCreator mExtViewCreator;

@@ -9,7 +9,7 @@ import im.quar.autolayout.AutoLayoutInfo;
 import im.quar.autolayout.utils.AutoLayoutHelper;
 
 /**
- * Created by liu.hanhong on 15/12/26.
+ * Created by DTHeaven on 15/12/26.
  */
 public class AutoLinearLayout$$AutoLayout extends AutoLinearLayout{
 

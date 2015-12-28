@@ -10,7 +10,7 @@ import im.quar.autolayout.AutoLayoutInfo;
 import im.quar.autolayout.utils.AutoLayoutHelper;
 
 /**
- * Created by liu.hanhong on 15/12/14.
+ * Created by DTHeaven on 15/12/14.
  */
 @AutoLayout
 public class AutoGridView extends GridView {

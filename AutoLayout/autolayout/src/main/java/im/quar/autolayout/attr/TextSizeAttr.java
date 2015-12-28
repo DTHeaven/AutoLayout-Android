@@ -4,7 +4,7 @@ import android.util.TypedValue;
 import android.widget.TextView;
 
 /**
- * Created by zhy on 15/12/4.
+ * Created by DTHeaven on 15/12/4.
  */
 public class TextSizeAttr extends AutoAttr<TextView> {
 

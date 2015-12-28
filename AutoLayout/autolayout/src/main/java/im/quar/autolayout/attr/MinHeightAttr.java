@@ -7,7 +7,7 @@ import android.widget.TextView;
 import java.lang.reflect.Field;
 
 /**
- * Created by liu.hanhong on 15/12/24.
+ * Created by DTHeaven on 15/12/24.
  */
 public class MinHeightAttr extends AutoAttr<View> {
 

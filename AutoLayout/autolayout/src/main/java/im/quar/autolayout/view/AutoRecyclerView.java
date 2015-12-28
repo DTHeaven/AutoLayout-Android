@@ -11,7 +11,7 @@ import im.quar.autolayout.utils.AutoLayoutHelper;
 
 
 /**
- * Created by wangzenghui on 15/12/9.
+ * Created by DTHeaven on 15/12/9.
  */
 public class AutoRecyclerView extends RecyclerView {
     private final AutoLayoutHelper mHelper = new AutoLayoutHelper(this);
