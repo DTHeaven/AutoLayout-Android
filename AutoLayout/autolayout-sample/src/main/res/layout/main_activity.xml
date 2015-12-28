@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:minWidth="300dp"
+        android:minHeight="200dp">
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="200px"
+            android:minHeight="70px"
+            android:textSize="40px"
+            android:drawablePadding="11px"
+            android:background="@color/colorPrimaryDark"
+            android:text="Text"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="111px"
+            android:maxHeight="112px"/>
+
+        <GridView
+            android:layout_width="100px"
+            android:layout_height="80px">
+
+        </GridView>
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start"/>
+
+    </LinearLayout>
+
+</FrameLayout>
