@@ -245,9 +245,9 @@ public class AutoLayoutHelper {
     }
 
     public static View createAutoLayoutView(String name, Context context, AttributeSet attrs) {
-        View view = mDefaultViewCreator.create(name, context, attrs);
-        if (view == null && mExtViewCreator != null) {
-            view = mExtViewCreator.create(name, context, attrs);
+        View view = mExtViewCreator == null ? null : mExtViewCreator.create(name, context, attrs);
+        if (view == null) {
+            view = mDefaultViewCreator.create(name, context, attrs);
         }
 
         return view;
