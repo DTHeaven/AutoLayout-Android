@@ -2,7 +2,9 @@ package im.quar.autolayout.view;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
@@ -29,7 +31,14 @@ public class AutoRecyclerView extends RecyclerView {
     }
 
     @Override
-    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+    public RecyclerView.LayoutParams generateLayoutParams(AttributeSet attrs) {
+        LayoutManager layoutManager = getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            return new GridLayoutParams(getContext(), attrs);
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            return new StaggeredGridLayoutParams(getContext(), attrs);
+        }
+
         return new LayoutParams(getContext(), attrs);
     }
 
@@ -67,6 +76,71 @@ public class AutoRecyclerView extends RecyclerView {
             return mAutoLayoutInfo;
         }
 
+    }
 
+    public static class GridLayoutParams extends GridLayoutManager.LayoutParams
+            implements AutoLayoutHelper.AutoLayoutParams {
+
+        private AutoLayoutInfo mAutoLayoutInfo;
+
+        public GridLayoutParams(Context c, AttributeSet attrs) {
+            super(c, attrs);
+            mAutoLayoutInfo = AutoLayoutHelper.getAutoLayoutInfo(c, attrs);
+            mAutoLayoutInfo.fillAttrs(this);
+        }
+
+        public GridLayoutParams(int width, int height) {
+            super(width, height);
+        }
+
+        public GridLayoutParams(MarginLayoutParams source) {
+            super(source);
+        }
+
+        public GridLayoutParams(ViewGroup.LayoutParams source) {
+            super(source);
+        }
+
+        public GridLayoutParams(RecyclerView.LayoutParams source) {
+            super(source);
+        }
+
+        @Override
+        public AutoLayoutInfo getAutoLayoutInfo() {
+            return mAutoLayoutInfo;
+        }
+    }
+
+    public static class StaggeredGridLayoutParams extends StaggeredGridLayoutManager.LayoutParams
+            implements AutoLayoutHelper.AutoLayoutParams {
+
+        private AutoLayoutInfo mAutoLayoutInfo;
+
+        public StaggeredGridLayoutParams(Context c, AttributeSet attrs) {
+            super(c, attrs);
+            mAutoLayoutInfo = AutoLayoutHelper.getAutoLayoutInfo(c, attrs);
+            mAutoLayoutInfo.fillAttrs(this);
+        }
+
+        public StaggeredGridLayoutParams(int width, int height) {
+            super(width, height);
+        }
+
+        public StaggeredGridLayoutParams(MarginLayoutParams source) {
+            super(source);
+        }
+
+        public StaggeredGridLayoutParams(ViewGroup.LayoutParams source) {
+            super(source);
+        }
+
+        public StaggeredGridLayoutParams(RecyclerView.LayoutParams source) {
+            super(source);
+        }
+
+        @Override
+        public AutoLayoutInfo getAutoLayoutInfo() {
+            return mAutoLayoutInfo;
+        }
     }
 }
