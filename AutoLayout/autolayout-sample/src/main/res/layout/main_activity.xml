@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <im.quar.autolayout.view.AutoLinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,9 +39,10 @@
         <Button
             android:id="@+id/btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start"/>
+            android:layout_height="0px"
+            android:text="Start"
+            app:auto_aspectRatio="1.5"/>
 
-    </LinearLayout>
+    </im.quar.autolayout.view.AutoLinearLayout>
 
 </FrameLayout>
