@@ -204,7 +204,8 @@ public class AutoLayoutProcessor extends AbstractProcessor {
                     .addParameter(int.class, "widthMeasureSpec")
                     .addParameter(int.class, "heightMeasureSpec")
                     .addStatement("if (!isInEditMode()) mHelper.adjustChildren()")
-                    .addStatement("super.onMeasure(widthMeasureSpec, heightMeasureSpec)");
+                    .addStatement("super.onMeasure(widthMeasureSpec, heightMeasureSpec)")
+                    .addStatement("if (!isInEditMode()) mHelper.applyAspectRatio()");
 
             MethodSpec.Builder generateLayoutParamsBuilder = MethodSpec.methodBuilder("generateLayoutParams")
                     .addAnnotation(Override.class)

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AutoLayout_Layout">
+        <attr name="auto_aspectRatio" format="float"/>
+    </declare-styleable>
+</resources>

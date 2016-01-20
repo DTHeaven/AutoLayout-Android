@@ -15,7 +15,9 @@ public abstract class AutoAttr<T> {
 
     public void apply(T t) {
         int val = AutoUtils.scaleValue(pxVal);
-        val = Math.max(val, 1);//for very thin divider
+        if (val == 0 && pxVal > 0) {//for very thin divider
+            val = 1;
+        }
         execute(t, val);
     }
 

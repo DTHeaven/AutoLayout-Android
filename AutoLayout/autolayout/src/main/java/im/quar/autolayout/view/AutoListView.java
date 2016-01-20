@@ -33,9 +33,9 @@ public class AutoListView extends ListView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (!isInEditMode())
-            mHelper.adjustChildren();
+        if (!isInEditMode()) mHelper.adjustChildren();
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if (!isInEditMode()) mHelper.applyAspectRatio();
     }
 
     public static class LayoutParams extends ListView.LayoutParams

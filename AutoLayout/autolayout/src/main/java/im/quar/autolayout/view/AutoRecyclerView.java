@@ -44,9 +44,9 @@ public class AutoRecyclerView extends RecyclerView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (!isInEditMode())
-            mHelper.adjustChildren();
+        if (!isInEditMode()) mHelper.adjustChildren();
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if (!isInEditMode()) mHelper.applyAspectRatio();
     }
 
     public static class LayoutParams extends RecyclerView.LayoutParams

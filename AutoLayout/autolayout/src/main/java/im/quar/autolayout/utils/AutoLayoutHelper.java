@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import im.quar.autolayout.AutoLayoutInfo;
+import im.quar.autolayout.R;
 import im.quar.autolayout.ViewCreator;
 import im.quar.autolayout.attr.DrawablePaddingAttr;
 import im.quar.autolayout.attr.HeightAttr;
@@ -106,6 +107,7 @@ public class AutoLayoutHelper {
     private static final int INDEX_DRAWABLE_PADDING = 17;
 
     private boolean mHasAdjustedChildren;
+    private boolean mAppliedAspectRatio;
 
     public AutoLayoutHelper(ViewGroup host) {
         mHost = host;
@@ -132,6 +134,27 @@ public class AutoLayoutHelper {
         }
 
         mHasAdjustedChildren = true;
+    }
+
+    public void applyAspectRatio() {
+        if (mAppliedAspectRatio) {
+            return;
+        }
+
+        for (int i = 0, n = mHost.getChildCount(); i < n; i++) {
+            View view = mHost.getChildAt(i);
+            ViewGroup.LayoutParams params = view.getLayoutParams();
+
+            if (params instanceof AutoLayoutParams) {
+                AutoLayoutInfo info =
+                        ((AutoLayoutParams) params).getAutoLayoutInfo();
+                if (info != null) {
+                    info.applyAspectRatio(view);
+                }
+            }
+        }
+
+        mAppliedAspectRatio = true;
     }
 
     public static AutoLayoutInfo getAutoLayoutInfo(Context context, AttributeSet attrs) {
@@ -224,6 +247,14 @@ public class AutoLayoutHelper {
             }
             textSizeTypeArray.recycle();
         }
+
+        //AspectRatio
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AutoLayout_Layout);
+        float value = array.getFloat(R.styleable.AutoLayout_Layout_auto_aspectRatio, -1f);
+        if (value != -1) {
+            info.aspectRatio = value;
+        }
+        typedArray.recycle();
 
         return info;
     }

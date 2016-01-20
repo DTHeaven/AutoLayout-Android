@@ -22,9 +22,9 @@ public class AutoLinearLayout extends LinearLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (!isInEditMode())
-            mHelper.adjustChildren();
+        if (!isInEditMode()) mHelper.adjustChildren();
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if (!isInEditMode()) mHelper.applyAspectRatio();
     }
 
 
