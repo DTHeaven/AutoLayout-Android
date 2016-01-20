@@ -2,7 +2,8 @@
 An easy way for supporting multiple screens. 
 * **Auto Adaption:** Write once use every screen size.
 * **Injection supported.**
-* **Customize adaption policy**
+* **Customize adaption policy.**
+* **Aspect ratio supported.**
 
 
 This project is forked from [hongyangAndroid/AndroidAutoLayout](https://github.com/hongyangAndroid/AndroidAutoLayout), but different.
@@ -179,6 +180,34 @@ public class MyApplication extends Application {
     }
 }
 ```
+
+### Aspect ratio
+To fixing the aspect ratio, you must explicitly define Auto**Layout in your xml, and change one side(width or height) size of child view to 0dp or 0px.
+Add app:auto_aspectRatio="1.33" if you want a width:height ratio of 4:3.
+```
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <im.quar.autolayout.view.AutoLinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="0px"
+            android:text="Test"
+            app:auto_aspectRatio="1.33"/>
+
+    </im.quar.autolayout.view.AutoLinearLayout>
+
+</FrameLayout>
+```
+
 
 ### Adapt in code:
 ```
