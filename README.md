@@ -34,8 +34,8 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'im.quar:autolayout:1.0.0'
-    apt 'im.quar:autolayout-compiler:1.0.0'
+    compile 'im.quar:autolayout:1.0.1'
+    apt 'im.quar:autolayout-compiler:1.0.1'
 }
 ```
 * Add your base width & height to AndroidManifest.xml, different screens will scale depends on those values.
