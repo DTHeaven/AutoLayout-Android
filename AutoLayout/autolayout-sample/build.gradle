@@ -31,7 +31,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
 //    compile project(':autolayout')
 //    apt project(':autolayout-compiler')
-    compile 'im.quar:autolayout:1.0.1'
-    apt 'im.quar:autolayout-compiler:1.0.1'
+    compile 'im.quar:autolayout:1.0.3'
+    apt 'im.quar:autolayout-compiler:1.0.3'
 
 }
