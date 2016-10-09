@@ -250,7 +250,12 @@ public class AutoLayoutHelper {
 
         //AspectRatio
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AutoLayout_Layout);
-        float value = array.getFloat(R.styleable.AutoLayout_Layout_auto_aspectRatio, -1f);
+        float value = -1;
+        try {
+            value = array.getFloat(R.styleable.AutoLayout_Layout_auto_aspectRatio, -1f);
+        } catch (Exception e) {
+            //Some rom(MIUI 8 beta) may crash.
+        }
         if (value != -1) {
             info.aspectRatio = value;
         }

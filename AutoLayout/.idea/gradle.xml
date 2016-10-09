@@ -15,15 +15,7 @@
             <option value="$PROJECT_DIR$/autolayout-sample" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/autolayout" />
-            <option value="$PROJECT_DIR$/autolayout-annotations" />
-            <option value="$PROJECT_DIR$/autolayout-compiler" />
-            <option value="$PROJECT_DIR$/autolayout-sample" />
-          </set>
-        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
