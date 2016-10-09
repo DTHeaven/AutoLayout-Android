@@ -14,166 +14,130 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 version = VERSION_NAME
 group = GROUP
 
-// Bintray
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-
-    configurations = ['archives']
-    pkg {
-        repo = 'maven'
-        name = POM_ARTIFACT_ID
-        desc = POM_DESCRIPTION
-        websiteUrl = POM_URL
-        issueTrackerUrl = POM_ISSUE_URL
-        vcsUrl = POM_SCM_URL
-        licenses = ["Apache-2.0"]
-        publish = true
-        publicDownloadNumbers = true
-        version {
-            desc = POM_DESCRIPTION
-            gpg {
-                sign = true //Determines whether to GPG sign the files. The default is false
-                passphrase = properties.getProperty("bintray.gpg.password")
-                //Optional. The passphrase for GPG signing'
-            }
-
-            mavenCentralSync {
-                sync = true
-                user = properties.getProperty("bintray.oss.user")
-                password = properties.getProperty("bintray.oss.password")
-                close = '1'
-            }
-        }
-    }
-}
-
-if (project.getPlugins().hasPlugin('com.android.application') ||
-        project.getPlugins().hasPlugin('com.android.library')) {
-    install {
-        repositories.mavenInstaller {
-            configuration = configurations.archives
-
-            pom.groupId = GROUP
-            pom.artifactId = POM_ARTIFACT_ID
-            pom.version = VERSION_NAME
-
-            pom.project {
-                name POM_NAME
-                packaging POM_PACKAGING
-                description POM_DESCRIPTION
-                url POM_URL
-
-                scm {
-                    url POM_SCM_URL
-                    connection POM_SCM_CONNECTION
-                    developerConnection POM_SCM_DEV_CONNECTION
-                }
-
-                licenses {
-                    license {
-                        name POM_LICENCE_NAME
-                        url POM_LICENCE_URL
-                        distribution POM_LICENCE_DIST
-                    }
-                }
-
-                developers {
-                    developer {
-                        id POM_DEVELOPER_ID
-                        name POM_DEVELOPER_NAME
-                    }
-                }
-            }
-        }
-    }
-
-    task androidJavadocs(type: Javadoc) {
-        source = android.sourceSets.main.java.source
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    }
-
-    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-        classifier = 'javadoc'
-        from androidJavadocs.destinationDir
-    }
-
-    task androidSourcesJar(type: Jar) {
-        classifier = 'sources'
-        from android.sourceSets.main.java.source
-    }
+Properties localProperties = new Properties()
+File localFile = project.rootProject.file("local.properties")
+if (localFile.exists()) {
+    localProperties.load(localFile.newDataInputStream())
+    ext.includes = localProperties.getProperty("INCLUDES")
 } else {
-    install {
-        repositories.mavenInstaller {
-            pom.groupId = GROUP
-            pom.artifactId = POM_ARTIFACT_ID
-            pom.version = VERSION_NAME
+    ext.includes = null
+}
 
-            pom.project {
-                name POM_NAME
-                packaging POM_PACKAGING
-                description POM_DESCRIPTION
-                url POM_URL
+def isReleaseBuild() {
+    return VERSION_NAME.contains("SNAPSHOT") == false
+}
 
-                scm {
-                    url POM_SCM_URL
-                    connection POM_SCM_CONNECTION
-                    developerConnection POM_SCM_DEV_CONNECTION
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                String releaseRepositoryUrl = localProperties.getProperty('RELEASE_REPOSITORY_URL')
+                String snapshotRepositoryUrl = localProperties.getProperty('SNAPSHOT_REPOSITORY_URL')
+                String repositoryUsername = localProperties.getProperty('SONATYPE_NEXUS_USERNAME')
+                String repositoryPassword = localProperties.getProperty('SONATYPE_NEXUS_PASSWORD')
+
+                repository(url: releaseRepositoryUrl) {
+                    authentication(userName: repositoryUsername, password: repositoryPassword)
+                }
+                snapshotRepository(url: snapshotRepositoryUrl) {
+                    authentication(userName: repositoryUsername, password: repositoryPassword)
                 }
 
-                licenses {
-                    license {
-                        name POM_LICENCE_NAME
-                        url POM_LICENCE_URL
-                        distribution POM_LICENCE_DIST
-                    }
-                }
-
-                developers {
-                    developer {
-                        id POM_DEVELOPER_ID
-                        name POM_DEVELOPER_NAME
-                    }
+                pom.groupId = GROUP
+                pom.artifactId = POM_ARTIFACT_ID
+                pom.version = VERSION_NAME
+                pom.project {
+                    packaging POM_PACKAGING
                 }
             }
         }
     }
 
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        classifier = 'sources'
-        from sourceSets.main.allSource
+    signing {
+        required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+        sign configurations.archives
     }
 
-    task javadocJar(type: Jar, dependsOn: javadoc) {
-        classifier = 'javadoc'
-        from javadoc.destinationDir
-    }
-}
-
-if (JavaVersion.current().isJava8Compatible()) {
-    allprojects {
-        tasks.withType(Javadoc) {
-            options.addStringOption('Xdoclint:none', '-quiet')
-        }
-    }
-}
-
-artifacts {
     if (project.getPlugins().hasPlugin('com.android.application') ||
             project.getPlugins().hasPlugin('com.android.library')) {
-        archives androidSourcesJar
-        archives androidJavadocsJar
+        task install(type: Upload, dependsOn: assemble) {
+            repositories.mavenInstaller {
+                configuration = configurations.archives
+
+                pom.groupId = GROUP
+                pom.artifactId = POM_ARTIFACT_ID
+                pom.version = VERSION_NAME
+
+                pom.project {
+                    packaging POM_PACKAGING
+                }
+            }
+        }
+
+        task androidJavadocs(type: Javadoc) {
+            source = android.sourceSets.main.java.source
+            classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        }
+
+        task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+            classifier = 'javadoc'
+            from androidJavadocs.destinationDir
+        }
+
+        task androidSourcesJar(type: Jar) {
+            classifier = 'sources'
+            from android.sourceSets.main.java.source
+        }
     } else {
-        archives sourcesJar
-        archives javadocJar
+        install {
+            repositories.mavenInstaller {
+                pom.groupId = GROUP
+                pom.artifactId = POM_ARTIFACT_ID
+                pom.version = VERSION_NAME
+
+                pom.project {
+                    packaging POM_PACKAGING
+                }
+            }
+        }
+
+        task sourcesJar(type: Jar, dependsOn: classes) {
+            classifier = 'sources'
+            from sourceSets.main.allSource
+        }
+
+        task javadocJar(type: Jar, dependsOn: javadoc) {
+            classifier = 'javadoc'
+            from javadoc.destinationDir
+        }
+    }
+
+    if (JavaVersion.current().isJava8Compatible()) {
+        allprojects {
+            tasks.withType(Javadoc) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+            }
+        }
+    }
+
+    artifacts {
+        if (project.getPlugins().hasPlugin('com.android.application') ||
+                project.getPlugins().hasPlugin('com.android.library')) {
+            if (includes == null || includes.isEmpty()) {
+                archives androidSourcesJar
+            }
+        } else {
+            if (includes == null || includes.isEmpty()) {
+                archives sourcesJar
+            }
+        }
     }
 }
